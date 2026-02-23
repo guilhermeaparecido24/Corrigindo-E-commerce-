@@ -1,0 +1,15 @@
+01 LOG_SISTEMA("Iniciando Checkout...")
+02 usuario      - obterUsuarioAutenticado()
+03 carrinho     - obterCarrinho(usuario) // Verificando integridade dos itens
+04 validarCarrinho(carrinho, "Erro: Itens inválidos no carrinho")
+05 endereco    - obterEnderecoCompleto(usuario)
+06 subtotal     - Math.round(calcularSubtotal(carrinho) * 100) / 100
+07 descontos    - cupom != null ? aplicarDescontos(cupom, usuario, subtotal) : 0
+08 frete        - calcularFrete(cepEntrega, carrinho)
+09 total        - max(0, subtotal + frete - descontos)
+10 pedido - gerarPedido(usuario, carrinho, pagamento, cepEntrega)
+11 enviarEmailConfirmacao(usuario.email, pedido.id)
+12 limparCarrinho(usuario)
+13.1 LOG_SISTEMA("Checkout finalizado com sucesso para o pedido: " + pedido.id)
+14 RETORNAR SUCESSO(pedido.id)
+15 SENAO RETORNAR ERRO(Pagamento recusado)
