@@ -13,3 +13,6 @@
 13.1 LOG_SISTEMA("Checkout finalizado com sucesso para o pedido: " + pedido.id)
 14 RETORNAR SUCESSO(pedido.id)
 15 SENAO RETORNAR ERRO(Pagamento recusado)
+16 gerarCodigoRastreio(pedido.id)
+17 RETORNAR SUCESSO(pedido.id)
+18 SENAO RETORNAR ERRO("Pagamento recusado: verifique as informações de seu cartão")
